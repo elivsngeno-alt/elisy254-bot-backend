@@ -8,6 +8,7 @@ const botRoutes = require("./routes/bot");
 const analysisRoutes = require("./routes/analysis");
 const tradeRoutes = require("./routes/trades");
 const analysisModeRoutes = require("./routes/analysis-mode");
+const mt5Routes = require("./routes/mt5");
 
 const app = express();
 
@@ -31,7 +32,15 @@ app.get("/", (req, res) => {
   res.json({
     name: "ELISY254 DOLLARS ZONE",
     status: "online",
-    message: "Backend is running"
+    message: "Backend is running",
+    services: {
+      auth: "online",
+      bot: "online",
+      analysis: "online",
+      trades: "online",
+      analysisMode: "online",
+      mt5: "online"
+    }
   });
 });
 
@@ -53,6 +62,11 @@ app.use("/api/trades", tradeRoutes);
 app.use(
   "/api/analysis-mode",
   analysisModeRoutes
+);
+
+app.use(
+  "/api/mt5",
+  mt5Routes
 );
 
 
